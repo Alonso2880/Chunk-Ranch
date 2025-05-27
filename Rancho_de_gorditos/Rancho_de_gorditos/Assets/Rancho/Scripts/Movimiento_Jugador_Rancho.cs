@@ -21,7 +21,15 @@ public class Movimiento_Jugador_Rancho : MonoBehaviour
         menuPausa = GameObject.Find("MenuPausa");
         huertoUI = GameObject.Find("HuertoUI");
         menuInicial = GameObject.Find("MenuInicio");
-    }
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+            
+    
+}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -77,24 +85,31 @@ public class Movimiento_Jugador_Rancho : MonoBehaviour
             Time.timeScale = 0;
         }
 
-       
-        
-            cordX = Input.GetAxis("Horizontal");
-            cordZ = Input.GetAxis("Vertical");
-            pos = new Vector3(cordX, 0, cordZ).normalized;
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(h, 0f, v);
 
-            if (pos != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(pos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, velRot * Time.deltaTime);
-            }
+          if (direction.sqrMagnitude > 0.001f)
+          {
+ 
+            Vector3 moveDir = direction.normalized;
 
-            transform.Translate(pos * vel * Time.deltaTime, Space.World);
+          
+            Quaternion targetRot = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetRot, velRot * Time.deltaTime);
 
-            // Aplicamos animaciones de caminar
-            animator.SetBool("Andar", pos != Vector3.zero);
+            transform.Translate(moveDir * vel * Time.deltaTime, Space.World);
 
-            // Gestión de correr
+            
+            animator.SetBool("Andar", true);
+
+          }
+          else
+          {
+            animator.SetBool("Andar", false);
+          }
+
+          
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 vel = velCorrer;
