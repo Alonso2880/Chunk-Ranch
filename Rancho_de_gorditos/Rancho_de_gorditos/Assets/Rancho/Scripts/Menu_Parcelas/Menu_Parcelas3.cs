@@ -18,6 +18,9 @@ public class Menu_Parcelas3 : MonoBehaviour
     [HideInInspector] public bool comprado=false;
     [HideInInspector] public GameObject contmonedas;
     private bool galli = false;
+
+    public AudioClip Si, No;
+    public bool Mej = false, ampl = false;
     void Start()
     {
         Comprar_Gallinas.onClick.AddListener(() => ComprarP(1));
@@ -42,6 +45,18 @@ public class Menu_Parcelas3 : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Mej)
+        {
+            Mejorar.gameObject.SetActive(false);
+        }
+
+        if (ampl)
+        {
+            Ampliar.gameObject.SetActive(false);
+        }
+    }
     public void ComprarP(int n)
     {
         Añadir_Mejorar_Parcela3 a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela3>();
@@ -103,30 +118,39 @@ public class Menu_Parcelas3 : MonoBehaviour
                     if (cont.monedas < 30)
                     {
                         Debug.Log("Te faltan monedas");
+                        GetComponent<AudioSource>().PlayOneShot(No);
                     }
                     else
                     {
                         if (terreno.tag == "T_Gallinas")
                         {
                             Gallina.multHuevo = 2;
+                            GetComponent<AudioSource>().PlayOneShot(Si);
+                            Mej = true;
                             cont.monedas -= 30;
                         }
 
                         if (terreno.tag == "T_Cerdos")
                         {
                             Cerdo.multcarne = 2;
+                            GetComponent<AudioSource>().PlayOneShot(Si);
+                            Mej = true;
                             cont.monedas -= 30;
                         }
 
                         if (terreno.tag == "T_Vacas")
                         {
                             Vaca.multLeche = 2;
+                            GetComponent<AudioSource>().PlayOneShot(Si);
+                            Mej = true;
                             cont.monedas -= 30;
                         }
 
                         if (terreno.tag == "T_Ovejas")
                         {
                             Oveja.multLana = 2;
+                            GetComponent<AudioSource>().PlayOneShot(Si);
+                            Mej = true;
                             cont.monedas -= 30;
                         }
 
@@ -136,24 +160,31 @@ public class Menu_Parcelas3 : MonoBehaviour
                     CerrarMenu();
                     break;
                 case 2:
-                    if (MaderaItem != null && MaderaItem.count >= 15)
+                    if (MaderaItem != null && MaderaItem.count >= 15 && galli)
                     {
-                        Debug.Log("Te faltan monedas");
+                        a.AmpliarParcela();
+                        GetComponent<AudioSource>().PlayOneShot(Si);
+                        ampl = true;
+                        MaderaItem.count -= 15;
                     }
                     else
                     {
-                        if (galli)
+                        if (MaderaItem != null && MaderaItem.count >= 15)
                         {
-                            a.AmpliarParcela();
+                            a.AmpliarParcelaResto();
+                            GetComponent<AudioSource>().PlayOneShot(Si);
+                            ampl = true;
                             MaderaItem.count -= 15;
                         }
                         else
                         {
-                            a.AmpliarParcelaResto();
-                            MaderaItem.count -= 15;
+                            Debug.Log("Te faltan monedas");
+                            GetComponent<AudioSource>().PlayOneShot(No);
+
                         }
 
                     }
+            
 
                     CerrarMenu();
                     break;

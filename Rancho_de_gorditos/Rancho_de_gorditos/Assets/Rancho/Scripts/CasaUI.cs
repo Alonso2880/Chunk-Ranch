@@ -6,7 +6,7 @@ public class CasaUI : MonoBehaviour
     public Button Si, No;
     private GameObject Casa;
     public Canvas c;
-    
+
     void Start()
     {
         Si.onClick.AddListener(() => SI());
@@ -42,6 +42,6 @@ public class CasaUI : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }
