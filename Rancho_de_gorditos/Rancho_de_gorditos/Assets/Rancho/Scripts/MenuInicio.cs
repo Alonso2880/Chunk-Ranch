@@ -12,6 +12,7 @@ public class MenuInicio : MonoBehaviour
     public Image Cred;
     public AudioSource musicaRancho;
     private AudioSource musicaInicio;
+    
     private void Awake()
     {
         Menu.enabled = true;
@@ -22,6 +23,7 @@ public class MenuInicio : MonoBehaviour
         menuIncio = true;
         Cred.gameObject.SetActive(false);
         musicaInicio = GetComponent<AudioSource>();
+      
     }
 
     private void Opciones(int n)
@@ -29,11 +31,14 @@ public class MenuInicio : MonoBehaviour
         switch (n)
         {
             case 1:
-                Menu.enabled = false;
-                Time.timeScale = 1;
-                menuIncio = false;
-                musicaInicio.mute = true;
-                musicaRancho.mute = false;
+                
+                    Menu.enabled = false;
+                    Time.timeScale = 1;
+                    menuIncio = false;
+                    musicaInicio.mute = true;
+                    musicaRancho.mute = false;
+                    
+                   
 
                 break;
             case 2:
@@ -55,6 +60,6 @@ public class MenuInicio : MonoBehaviour
     
     void Update()
     {
-        
+ 
     }
 }
