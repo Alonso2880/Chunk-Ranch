@@ -10,6 +10,9 @@ public class ÁrbolUI2 : MonoBehaviour
     [HideInInspector] public bool manzano = false, naranjo = false, huerto = false;
     [HideInInspector] public GameObject contmonedas;
     public bool mejorado = false;
+
+    public AudioClip Si, No;
+    public bool meU = false;
     void Start()
     {
         c.enabled = false;
@@ -85,8 +88,13 @@ public class ÁrbolUI2 : MonoBehaviour
             {
                 a.compraHuerto();
                 huerto = true;
-                cont.monedas -= 5;
+                cont.monedas -= 25;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 ads();
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(No);
             }
         }
     }
@@ -191,7 +199,12 @@ public class ÁrbolUI2 : MonoBehaviour
         {
             mejorado = true;
             cont.monedas -= 50;
+            GetComponent<AudioSource>().PlayOneShot(Si);
             Mejorar.gameObject.SetActive(false);
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
         }
     }
     void Update()

@@ -12,6 +12,9 @@ public class HuertoUI : MonoBehaviour
     private GameObject HuertoG, jugador;
     private bool compHu1 = false, compHu2 = false, compHu3 = false, compHu4 = false, mejHu1 = false, mejHu2 = false, mejHu3 = false, mejHu4 = false;
     [HideInInspector] public GameObject contmonedas;
+
+    public AudioClip Si, No;
+    public bool meU = false;
     void Start()
     {
         huertoManager = Object.FindFirstObjectByType<HuertoManager>();
@@ -32,6 +35,7 @@ public class HuertoUI : MonoBehaviour
         Pimiento.gameObject.SetActive(false);
         Cosechar.gameObject.SetActive(false);
         MejoraHuerto.gameObject.SetActive(false);
+        contmonedas = GameObject.Find("Canvas");
     }
 
     private void Plantar(int tipo)
@@ -48,14 +52,17 @@ public class HuertoUI : MonoBehaviour
             {
                 bool exito = huertoManager.PlantarSemilla(tipo);
                 itemZa.count--;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 if (!exito)
                 {
                     Debug.Log("No puedes plantar: huerto lleno.");
+                    GetComponent<AudioSource>().PlayOneShot(No);
                 }
             }
             else
             {
                 Debug.Log("No tienes semillas de zanahoria");
+                GetComponent<AudioSource>().PlayOneShot(No);
             }
         }
 
@@ -65,14 +72,17 @@ public class HuertoUI : MonoBehaviour
             {
                 bool exito = huertoManager.PlantarSemilla(tipo);
                 itemPa.count--;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 if (!exito)
                 {
                     Debug.Log("No puedes plantar: huerto lleno.");
+                    GetComponent<AudioSource>().PlayOneShot(No);
                 }
             }
             else
             {
                 Debug.Log("No tienes semillas de patata");
+                GetComponent<AudioSource>().PlayOneShot(No);
             }
         }
 
@@ -82,14 +92,17 @@ public class HuertoUI : MonoBehaviour
             {
                 bool exito = huertoManager.PlantarSemilla(tipo);
                 itemTo.count--;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 if (!exito)
                 {
                     Debug.Log("No puedes plantar: huerto lleno.");
+                    GetComponent<AudioSource>().PlayOneShot(No);
                 }
             }
             else
             {
                 Debug.Log("No tienes semillas de tomate");
+                GetComponent<AudioSource>().PlayOneShot(No);
             }
         }
 
@@ -99,14 +112,17 @@ public class HuertoUI : MonoBehaviour
             {
                 bool exito = huertoManager.PlantarSemilla(tipo);
                 itemPi.count--;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 if (!exito)
                 {
                     Debug.Log("No puedes plantar: huerto lleno.");
+                    GetComponent<AudioSource>().PlayOneShot(No);
                 }
             }
             else
             {
                 Debug.Log("No tienes semillas de pimiento");
+                GetComponent<AudioSource>().PlayOneShot(No);
             }
         }
        
@@ -119,10 +135,12 @@ public class HuertoUI : MonoBehaviour
         Contador_Moneas cont = contmonedas.GetComponent<Contador_Moneas>();
         if (!compHu1) 
         { 
-        HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto.position, HuecoHuerto.rotation);
-        HuertoG.transform.SetParent(HuecoHuerto);
-        compHu1 = true;
-        CerrarUI();
+            HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto.position, HuecoHuerto.rotation);
+            HuertoG.transform.SetParent(HuecoHuerto);
+            compHu1 = true;
+            GetComponent<AudioSource>().PlayOneShot(Si);
+            CerrarUI();
+            return;
         }
 
         if(compHu1 && mejHu1 && cont.monedas >=50)
@@ -131,7 +149,14 @@ public class HuertoUI : MonoBehaviour
             HuertoG.transform.SetParent(HuecoHuerto2);
             compHu2 = true;
             cont.monedas -= 50;
+            GetComponent<AudioSource>().PlayOneShot(Si);
             CerrarUI();
+            return;
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
+            
         }
 
         if(compHu2 && mejHu2 && cont.monedas >= 150)
@@ -139,8 +164,15 @@ public class HuertoUI : MonoBehaviour
             HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto3.position, HuecoHuerto3.rotation);
             HuertoG.transform.SetParent(HuecoHuerto3);
             cont.monedas -= 150;
+            GetComponent<AudioSource>().PlayOneShot(Si);
             compHu3 = true;
             CerrarUI();
+            return;
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
+            
         }
 
         if(compHu3 && mejHu3 && cont.monedas >= 250)
@@ -148,8 +180,15 @@ public class HuertoUI : MonoBehaviour
             HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto4.position, HuecoHuerto4.rotation);
             HuertoG.transform.SetParent(HuecoHuerto4);
             cont.monedas -= 250;
+            GetComponent<AudioSource>().PlayOneShot(Si);
             compHu4 = true;
             CerrarUI();
+            return;
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
+            
         }
     }
 
@@ -163,8 +202,13 @@ public class HuertoUI : MonoBehaviour
             {
                 mejHu1 = true;
                 RocaItem.count -= 10;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
-            } 
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(No);
+            }
             
         }
 
@@ -176,9 +220,18 @@ public class HuertoUI : MonoBehaviour
             {
                 mejHu2 = true;
                 RocaItem.count -= 10;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
             }
-            
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(No);
+            }
+
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
         }
 
         if (compHu3)
@@ -189,9 +242,18 @@ public class HuertoUI : MonoBehaviour
             {
                 mejHu3 = true;
                 RocaItem.count -= 10;
+                GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
             }
-            
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(No);
+            }
+
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
         }
 
         if (compHu4)
@@ -202,9 +264,19 @@ public class HuertoUI : MonoBehaviour
             {
                 mejHu4 = true;
                 RocaItem.count -= 10;
+                GetComponent<AudioSource>().PlayOneShot(Si);
+                meU = true;
                 CerrarUI();
             }
-            
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(No);
+            }
+
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(No);
         }
     }
 
@@ -248,6 +320,11 @@ public class HuertoUI : MonoBehaviour
             Tomate.gameObject.SetActive(true);
             Patata.gameObject.SetActive(true);
             Pimiento.gameObject.SetActive(true);
+        }
+
+        if (meU)
+        {
+            MejoraHuerto.gameObject.SetActive(false);
         }
 
     }

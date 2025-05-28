@@ -187,10 +187,6 @@ public class Menu_Parcelas : MonoBehaviour
                         
                     }
 
-
-                    
-
-
                     CerrarMenu();
                     break;
                 case 3:
