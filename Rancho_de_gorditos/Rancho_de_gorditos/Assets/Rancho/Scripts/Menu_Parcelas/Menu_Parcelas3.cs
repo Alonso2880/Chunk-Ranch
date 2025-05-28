@@ -125,6 +125,7 @@ public class Menu_Parcelas3 : MonoBehaviour
                         if (terreno.tag == "T_Gallinas")
                         {
                             Gallina.multHuevo = 2;
+                            g.tiempoHuevo = 3;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
                             cont.monedas -= 30;
@@ -133,6 +134,7 @@ public class Menu_Parcelas3 : MonoBehaviour
                         if (terreno.tag == "T_Cerdos")
                         {
                             Cerdo.multcarne = 2;
+                            c.tiempoCarne = 4;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
                             cont.monedas -= 30;
@@ -141,6 +143,7 @@ public class Menu_Parcelas3 : MonoBehaviour
                         if (terreno.tag == "T_Vacas")
                         {
                             Vaca.multLeche = 2;
+                            v.tiempoLeche = 6;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
                             cont.monedas -= 30;
@@ -149,6 +152,7 @@ public class Menu_Parcelas3 : MonoBehaviour
                         if (terreno.tag == "T_Ovejas")
                         {
                             Oveja.multLana = 2;
+                            o.tiempoLana = 8;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
                             cont.monedas -= 30;

@@ -2,90 +2,71 @@ using UnityEngine;
 
 public class ObtenerMateriales : MonoBehaviour
 {
-    private GameObject jugador, piedra, madera;
+    private GameObject jugador;
     public GameObject piedraMat;
+
+    private bool colisionPiedra = false;
+    private bool colisionMadera = false;
+
+    private LlevarObjeto llevarObjeto;
     void Start()
     {
         jugador = this.gameObject;
-        
+        llevarObjeto = GetComponent<LlevarObjeto>();
+
     }
 
-    private void picarPiedra()
+    private void Update()
     {
-        LlevarObjeto l = jugador.GetComponent<LlevarObjeto>();
-        guardar_Inventario inventarioScript = this.GetComponent<guardar_Inventario>();
-        if (l.picaPiedras)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (colisionPiedra && llevarObjeto.picaPiedras)
             {
-                inventarioScript.AgregarItem("Roca", piedraMat);
-                Debug.Log("Me muero");
-                piedra = null;
+                RecogerMaterial("Roca", piedraMat, 2);
+                Debug.Log("Has recogido roca");
+            }
+
+            if (colisionMadera && llevarObjeto.hacha)
+            {
+                RecogerMaterial("Madera", null, 2);
+                Debug.Log("Has recogido madera");
             }
         }
     }
 
-    private void cortarMadera()
+    private void OnCollisionEnter(Collision collision)
     {
-
-        LlevarObjeto l = jugador.GetComponent<LlevarObjeto>();
-        guardar_Inventario inventarioScript = this.GetComponent<guardar_Inventario>();
-
-        if (l.hacha)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                inventarioScript.AgregarItem("Madera", null);
-                inventarioScript.AgregarItem("Madera", null);
-                Debug.Log("Me muero");
-                madera = null;
-
-            }
-        }
-
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        LlevarObjeto l = jugador.GetComponent<LlevarObjeto>();
-        guardar_Inventario inventarioScript = this.GetComponent<guardar_Inventario>();
-
         if (collision.gameObject.CompareTag("Piedra"))
         {
-            
-            piedra = collision.gameObject;
-            // picarPiedra();
-            if (l.picaPiedras)
-            {
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    inventarioScript.AgregarItem("Roca", piedraMat);
-                    Debug.Log("Me muero");
-                    piedra = null;
-                }
-            }
-
+            colisionPiedra = true;
         }
 
         if (collision.gameObject.CompareTag("madera"))
         {
-            //Debug.Log("hh");
-            madera = collision.gameObject;
-            // cortarMadera();
+            colisionMadera = true;
+        }
+    }
 
-            if (l.hacha)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    inventarioScript.AgregarItem("Madera", null);
-                    inventarioScript.AgregarItem("Madera", null);
-                    Debug.Log("Me muero");
-                    madera = null;
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Piedra"))
+        {
+            colisionPiedra = false;
+        }
 
-                }
-            }
+        if (collision.gameObject.CompareTag("madera"))
+        {
+            colisionMadera = false;
+        }
+    }
+
+
+    private void RecogerMaterial(string nombre, GameObject prefab, int cantidad)
+    {
+        guardar_Inventario inventarioScript = this.GetComponent<guardar_Inventario>();
+        for (int i=0; i<cantidad; i++)
+        {
+            inventarioScript.AgregarItem(nombre, prefab);
         }
     }
 }

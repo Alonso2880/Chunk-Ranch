@@ -11,7 +11,7 @@ public class Vaca : MonoBehaviour
     private bool SeMueve = true, random = true;
     public bool enterreno = false;
     [HideInInspector] public bool b = false;
-    private int X, Z, X1, tiempoLeche = 9;
+    public int X, Z, X1, tiempoLeche = 9;
     public int LecheTota = 0;
     public GameObject prefableche;
 

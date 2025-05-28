@@ -11,7 +11,7 @@ public class Gallina : MonoBehaviour
     private bool SeMueve = true, random = true;
     public bool enterreno = false;
     [HideInInspector] public bool b = false;
-    private int X, Z, X1, tiempoHuevo = 5;
+    public int X, Z, X1, tiempoHuevo = 5;
     public int huevoTota = 0;
     public GameObject prefabHuevo;
 

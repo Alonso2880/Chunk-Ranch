@@ -51,7 +51,7 @@ public class AjustesUI : MonoBehaviour
 
     public void SetVolumen(float v)
     {
-        Debug.Log($"[AjustesUI] SetVolumen ? v = {v}   (Time.time = {Time.time})\n{Environment.StackTrace}");
+        //Debug.Log($"[AjustesUI] SetVolumen ? v = {v}   (Time.time = {Time.time})\n{Environment.StackTrace}");
         AudioListener.volume = v;
         PlayerPrefs.SetFloat("VolumenMaestro", v);
     }

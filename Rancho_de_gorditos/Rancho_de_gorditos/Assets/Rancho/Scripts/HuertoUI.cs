@@ -204,6 +204,7 @@ public class HuertoUI : MonoBehaviour
                 RocaItem.count -= 10;
                 GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
+                return;
             }
             else
             {
@@ -222,6 +223,7 @@ public class HuertoUI : MonoBehaviour
                 RocaItem.count -= 10;
                 GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
+                return;
             }
             else
             {
@@ -244,6 +246,7 @@ public class HuertoUI : MonoBehaviour
                 RocaItem.count -= 10;
                 GetComponent<AudioSource>().PlayOneShot(Si);
                 CerrarUI();
+                return;
             }
             else
             {

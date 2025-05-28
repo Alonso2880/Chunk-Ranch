@@ -11,7 +11,7 @@ public class Oveja : MonoBehaviour
     private bool SeMueve = true, random = true;
     public bool enterreno = false;
     [HideInInspector] public bool b = false;
-    private int X, Z, X1, tiempoLana = 11;
+    public int X, Z, X1, tiempoLana = 11;
     public int LanaTota = 0;
     public GameObject prefabLana;
 
