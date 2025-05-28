@@ -8,7 +8,7 @@ public class Coger_Animales : MonoBehaviour
     GameObject player;
     Gallina gallina;
     public GameObject gallinaPrefab, cerdoPrefab, vacaPrefab, ovejaPrefab;
-    public Transform puntoSujección;
+    public Transform puntoSujección, puntoAnimalesGrandes;
     public float fuerzaLanzamiento = 10f;
     public Animator animator;
 
@@ -158,8 +158,8 @@ public class Coger_Animales : MonoBehaviour
 
     public void ObtenerCerdo()
     {
-        cerdoActual = Instantiate(cerdoPrefab, puntoSujección.position, puntoSujección.rotation);
-        cerdoActual.transform.SetParent(puntoSujección);
+        cerdoActual = Instantiate(cerdoPrefab, puntoAnimalesGrandes.position, puntoAnimalesGrandes.rotation);
+        cerdoActual.transform.SetParent(puntoAnimalesGrandes);
         cerdoActual.GetComponent<Rigidbody>().isKinematic = true;
 
         Gallina scriptGallina = cerdoActual.GetComponent<Gallina>();
@@ -188,8 +188,8 @@ public class Coger_Animales : MonoBehaviour
 
     public void ObtenerVaca()
     {
-        vacaActual = Instantiate(vacaPrefab, puntoSujección.position, puntoSujección.rotation);
-        vacaActual.transform.SetParent(puntoSujección);
+        vacaActual = Instantiate(vacaPrefab, puntoAnimalesGrandes.position, puntoAnimalesGrandes.rotation);
+        vacaActual.transform.SetParent(puntoAnimalesGrandes);
         vacaActual.GetComponent<Rigidbody>().isKinematic = true;
 
         Gallina scriptGallina = vacaActual.GetComponent<Gallina>();
@@ -336,8 +336,8 @@ public class Coger_Animales : MonoBehaviour
                     scriptCerdo.enabled = false;
                 }
 
-                cerdoActual.transform.SetParent(puntoSujección);
-                cerdoActual.transform.position = puntoSujección.position;
+                cerdoActual.transform.SetParent(puntoAnimalesGrandes);
+                cerdoActual.transform.position = puntoAnimalesGrandes.position;
                 cerdoActual.GetComponent<Rigidbody>().isKinematic = true;
                 tieneCerdo = true;
                 c = false;
@@ -394,8 +394,8 @@ public class Coger_Animales : MonoBehaviour
                     scriptVaca.enabled = false;
                 }
 
-                vacaActual.transform.SetParent(puntoSujección);
-                vacaActual.transform.position = puntoSujección.position;
+                vacaActual.transform.SetParent(puntoAnimalesGrandes);
+                vacaActual.transform.position = puntoAnimalesGrandes.position;
                 vacaActual.GetComponent<Rigidbody>().isKinematic = true;
                 tieneVaca = true;
                 v = false;

@@ -35,7 +35,7 @@ public class Menu_Parcelas3 : MonoBehaviour
         canvasP = GetComponent<Canvas>();
         canvasP.enabled = false;
 
-        baseParcelas = GameObject.Find("Base de parcelas");
+        baseParcelas = GameObject.Find("Base de parcelas3");
         gallina = GameObject.Find("Pollo");
         cerdo = GameObject.Find("Cerdo");
         vaca = GameObject.Find("Vaca");
@@ -60,44 +60,88 @@ public class Menu_Parcelas3 : MonoBehaviour
     public void ComprarP(int n)
     {
         Añadir_Mejorar_Parcela3 a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela3>();
+        Contador_Moneas cont = contmonedas.GetComponent<Contador_Moneas>();
         if (comprado == false)
         {
             switch (n)
             {
                 case 1:
-                    a.GenerarParcelaGallina();
-                    terreno.tag = "T_Gallinas";
-                    galli = true;
-                    CerrarMenu();
-                    comprado = true;
+                    if (cont.monedas >= 150)
+                    {
+                        a.GenerarParcelaGallina();
+                        terreno.tag = "T_Gallinas";
+                        galli = true;
+                        CerrarMenu();
+                        comprado = true;
+                        cont.monedas -= 150;
+                        GetComponent<AudioSource>().PlayOneShot(Si);
+                        return;
+
+                    }
+                    else
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(No);
+                    }
                     break;
 
                 case 2:
-                    a.GenerarParcelaVaca();
-                    terreno.tag = "T_Vacas";
-                    CerrarMenu();
-                    comprado = true;
+                    if (cont.monedas >= 150)
+                    {
+                        a.GenerarParcelaVaca();
+                        terreno.tag = "T_Vacas";
+                        CerrarMenu();
+                        comprado = true;
+                        cont.monedas -= 150;
+                        GetComponent<AudioSource>().PlayOneShot(Si);
+                        return;
+
+                    }
+                    else
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(No);
+                    }
                     break;
 
                 case 3:
-                    a.GenerarParcelaCerdo();
-                    terreno.tag = "T_Cerdos";
-                    CerrarMenu();
-                    comprado = true;
+                    if (cont.monedas >= 150)
+                    {
+                        a.GenerarParcelaCerdo();
+                        terreno.tag = "T_Cerdos";
+                        CerrarMenu();
+                        comprado = true;
+                        cont.monedas -= 150;
+                        GetComponent<AudioSource>().PlayOneShot(Si);
+                        return;
+                    }
+                    else
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(No);
+                    }
                     break;
 
                 case 4:
-                    a.GenerarParcelaOveja();
-                    terreno.tag = "T_Ovejas";
-                    CerrarMenu();
-                    comprado = true;
+                    if (cont.monedas >= 150)
+                    {
+                        a.GenerarParcelaOveja();
+                        terreno.tag = "T_Ovejas";
+                        CerrarMenu();
+                        comprado = true;
+                        cont.monedas -= 150;
+                        GetComponent<AudioSource>().PlayOneShot(Si);
+                        return;
+                    }
+                    else
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(No);
+
+                    }
                     break;
                 case 5:
                     CerrarMenu();
                     break;
             }
         }
-      
+
     }
 
     public void Mejoras(int n)

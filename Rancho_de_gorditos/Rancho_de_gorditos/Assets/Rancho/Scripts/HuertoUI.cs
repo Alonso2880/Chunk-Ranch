@@ -143,12 +143,12 @@ public class HuertoUI : MonoBehaviour
             return;
         }
 
-        if(compHu1 && mejHu1 && cont.monedas >=50)
+        if(compHu1 && mejHu1 && cont.monedas >=150)
         {
             HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto2.position, HuecoHuerto2.rotation);
             HuertoG.transform.SetParent(HuecoHuerto2);
             compHu2 = true;
-            cont.monedas -= 50;
+            cont.monedas -= 150;
             GetComponent<AudioSource>().PlayOneShot(Si);
             CerrarUI();
             return;
@@ -175,11 +175,11 @@ public class HuertoUI : MonoBehaviour
             
         }
 
-        if(compHu3 && mejHu3 && cont.monedas >= 250)
+        if(compHu3 && mejHu3 && cont.monedas >= 150)
         {
             HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto4.position, HuecoHuerto4.rotation);
             HuertoG.transform.SetParent(HuecoHuerto4);
-            cont.monedas -= 250;
+            cont.monedas -= 150;
             GetComponent<AudioSource>().PlayOneShot(Si);
             compHu4 = true;
             CerrarUI();
