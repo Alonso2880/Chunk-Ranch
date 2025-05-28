@@ -7,8 +7,7 @@ using System.Runtime.CompilerServices;
 public class ZonasUI : MonoBehaviour
 {
     public Canvas c;
-    public TextMeshProUGUI Rancho;
-    public TextMeshProUGUI Bosque;
+    public Image Rancho, Bosque;
     public bool rancho = false, bosque = false;
     private float tiempo = 3f;
     private bool mostrado = false;
@@ -19,8 +18,8 @@ public class ZonasUI : MonoBehaviour
     void Start()
     {
         c.enabled = false;
-        Rancho.enabled = false;
-        Bosque.enabled = false;
+        Rancho.gameObject.SetActive(false);
+        Bosque.gameObject.SetActive(false);
     }
 
 
@@ -43,8 +42,8 @@ public class ZonasUI : MonoBehaviour
              if (rancho)
              {
                  StopCoroutine (BosqueI(tiempo));
-                 Bosque.enabled = false;
-                 bosque = false;
+                Bosque.gameObject.SetActive(false);
+                bosque = false;
              }
          }
 
@@ -54,10 +53,10 @@ public class ZonasUI : MonoBehaviour
      {
 
          c.enabled=true;
-         Rancho.enabled=true;
+         Rancho.gameObject.SetActive(true);
          yield return new WaitForSeconds(tiempo);
          c.enabled=false;
-         Rancho.enabled = false;
+         Rancho.gameObject.SetActive(false);
          rancho = false;
          mostrado = false;
      }
@@ -65,10 +64,10 @@ public class ZonasUI : MonoBehaviour
      private IEnumerator BosqueI(float tiempo)
      {
          c.enabled = true;
-         Bosque.enabled=true;
+         Bosque.gameObject.SetActive(true);
          yield return new WaitForSeconds(tiempo);
          c.enabled = false;
-         Bosque.enabled=false;
+         Bosque.gameObject.SetActive(false);
          bosque = false;
          mostrado = false;
      }

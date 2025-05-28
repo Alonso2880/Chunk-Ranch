@@ -48,18 +48,18 @@ public class MenuInicio : MonoBehaviour
                 Cred.gameObject.SetActive(true);
                 Jugar.gameObject.SetActive(false);
                 Salir.gameObject.SetActive(false);
-                if(Input.GetKeyUp(KeyCode.Escape))
-                {
-                    Cred.gameObject.SetActive(false);
-                    Jugar.gameObject.SetActive(true);
-                    Salir.gameObject.SetActive(true);
-                }
+                
                 break;
         }
     }
     
     void Update()
     {
- 
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Cred.gameObject.SetActive(false);
+            Jugar.gameObject.SetActive(true);
+            Salir.gameObject.SetActive(true);
+        }
     }
 }
