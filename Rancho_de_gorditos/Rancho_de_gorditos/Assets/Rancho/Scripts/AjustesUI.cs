@@ -28,7 +28,7 @@ public class AjustesUI : MonoBehaviour
         volumen.onValueChanged.AddListener(SetVolumen);
         SetVolumen(volumenG);
 
-        brillo.value = PlayerPrefs.GetFloat("brillo", 0.5f);
+        brillo.value = PlayerPrefs.GetFloat("brillo", 0f);
         panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, brillo.value);
 
 

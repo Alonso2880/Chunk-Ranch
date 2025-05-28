@@ -12,7 +12,8 @@ public class MenuInicio : MonoBehaviour
     public Image Cred;
     public AudioSource musicaRancho;
     private AudioSource musicaInicio;
-    
+
+
     private void Awake()
     {
         Menu.enabled = true;
@@ -37,9 +38,6 @@ public class MenuInicio : MonoBehaviour
                     menuIncio = false;
                     musicaInicio.mute = true;
                     musicaRancho.mute = false;
-                    
-                   
-
                 break;
             case 2:
                 Application.Quit();
