@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class AjustesUI : MonoBehaviour
 {
@@ -10,9 +11,6 @@ public class AjustesUI : MonoBehaviour
     public GameObject Inventario, buzon;
     public float sliderValue;
     public Image panelBrillo;
-
-    private const string VolumeKey = "VolumenMaestro";
-    private const string BrightnessKey = "BrilloEscena";
 
     void Start()
     {
@@ -25,6 +23,7 @@ public class AjustesUI : MonoBehaviour
         InvenUI = GameObject.Find("InventoryPanel");
 
         float volumenG = PlayerPrefs.GetFloat("VolumenMaestro", 0.5f);
+        volumen.onValueChanged.RemoveListener(SetVolumen);
         volumen.value = volumenG;
         volumen.onValueChanged.AddListener(SetVolumen);
         SetVolumen(volumenG);
@@ -52,6 +51,7 @@ public class AjustesUI : MonoBehaviour
 
     public void SetVolumen(float v)
     {
+        Debug.Log($"[AjustesUI] SetVolumen ? v = {v}   (Time.time = {Time.time})\n{Environment.StackTrace}");
         AudioListener.volume = v;
         PlayerPrefs.SetFloat("VolumenMaestro", v);
     }
@@ -65,6 +65,7 @@ public class AjustesUI : MonoBehaviour
     public void ChageSlider(float valor)
     {
         sliderValue = valor;
+        
         PlayerPrefs.SetFloat("brillo", sliderValue);
         panelBrillo.color = new Color(panelBrillo.color.r, panelBrillo.color.g, panelBrillo.color.b, brillo.value);
     }

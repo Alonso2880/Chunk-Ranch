@@ -6,6 +6,7 @@ public class CasaUI : MonoBehaviour
     public Button Si, No;
     private GameObject Casa;
     public Canvas c;
+    public AudioClip nuevoD;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class CasaUI : MonoBehaviour
     {
         casa c = Casa.GetComponent<casa>();
         Debug.Log("Has cambiado de día");
+        GetComponent<AudioSource>().PlayOneShot(nuevoD);
         c.dia++;
         cerrar();
     }
