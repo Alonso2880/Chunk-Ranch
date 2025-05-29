@@ -12,6 +12,8 @@ public class Menu_Vender : MonoBehaviour
     [HideInInspector] public GameObject coli;
     public TMP_InputField inputCantidad, inutCantidadCarne, inputCantidadLeche, inputCantidadLana;
     public GameObject buzon;
+
+    public Image inC, inLe, inLa;
     void Start()
     {
         v_huevos.onClick.AddListener(OnClickVender);
@@ -30,9 +32,13 @@ public class Menu_Vender : MonoBehaviour
         v_carne.gameObject.SetActive(false);
         v_leche.gameObject.SetActive(false);
         v_lana.gameObject.SetActive(false);
-        inutCantidadCarne.gameObject.SetActive(false);
-        inputCantidadLeche.gameObject.SetActive(false);
-        inputCantidadLana.gameObject.SetActive(false);
+
+        inutCantidadCarne.enabled = false;
+        inputCantidadLana.enabled = false;
+        inputCantidadLeche.enabled = false;
+        inC.gameObject.SetActive(false);
+        inLe.gameObject.SetActive(false);
+        inLa.gameObject.SetActive(false);
     }
 
     public void OnClickVender()
@@ -108,9 +114,14 @@ public class Menu_Vender : MonoBehaviour
             v_carne.gameObject.SetActive(true);
             v_leche.gameObject.SetActive(false);
             v_lana.gameObject.SetActive(false);
-            inutCantidadCarne.gameObject.SetActive(true);
-            inputCantidadLeche.gameObject.SetActive(false);
-            inputCantidadLana.gameObject.SetActive(false);
+
+            inutCantidadCarne.enabled = true;
+            inputCantidadLana.enabled = false;
+            inputCantidadLeche.enabled = false;
+
+            inC.gameObject.SetActive(true);
+            inLe.gameObject.SetActive(false);
+            inLa.gameObject.SetActive(false);
         }
 
         if (b.E1 && b.E2 && !b.E3)
@@ -118,9 +129,14 @@ public class Menu_Vender : MonoBehaviour
             v_carne.gameObject.SetActive(true);
             v_leche.gameObject.SetActive(true);
             v_lana.gameObject.SetActive(false);
-            inutCantidadCarne.gameObject.SetActive(true);
-            inputCantidadLeche.gameObject.SetActive(true);
-            inputCantidadLana.gameObject.SetActive(false);
+         
+            inutCantidadCarne.enabled = true;
+            inputCantidadLana.enabled = false;
+            inputCantidadLeche.enabled = true;
+
+            inC.gameObject.SetActive(true);
+            inLe.gameObject.SetActive(true);
+            inLa.gameObject.SetActive(false);
         }
 
         if (b.E1 && b.E2 && b.EM)
@@ -128,9 +144,14 @@ public class Menu_Vender : MonoBehaviour
             v_carne.gameObject.SetActive(true);
             v_leche.gameObject.SetActive(true);
             v_lana.gameObject.SetActive(true);
-            inutCantidadCarne.gameObject.SetActive(true);
-            inputCantidadLeche.gameObject.SetActive(true);
-            inputCantidadLana.gameObject.SetActive(true);
+  
+            inutCantidadCarne.enabled = true;
+            inputCantidadLana.enabled = true;
+            inputCantidadLeche.enabled = true;
+
+            inC.gameObject.SetActive(true);
+            inLe.gameObject.SetActive(true);
+            inLa.gameObject.SetActive(true);
         }
     }
     private void CerrarMenu()
@@ -138,6 +159,12 @@ public class Menu_Vender : MonoBehaviour
         canvasV.enabled = false;
         Time.timeScale = 1;
         inputCantidad.enabled = false;
+        inutCantidadCarne.enabled = false;
+        inputCantidadLeche.enabled = false;
+        inputCantidadLana.enabled = false;
+        inC.gameObject.SetActive(false);
+        inLe.gameObject.SetActive(false);
+        inLa.gameObject.SetActive(false);
     }
 
     void Update()

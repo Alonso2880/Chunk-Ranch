@@ -82,7 +82,7 @@ public class Menu_Compra : MonoBehaviour
 
         if (b.EM)
         {
-            c_ovejas.gameObject.SetActive(false);
+            c_ovejas.gameObject.SetActive(true);
         }
         canvasM.enabled = true;
         Time.timeScale = 0;

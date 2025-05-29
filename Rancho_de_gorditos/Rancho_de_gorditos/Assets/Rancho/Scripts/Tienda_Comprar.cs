@@ -58,14 +58,14 @@ public class Tienda_Comprar : MonoBehaviour
         Contador_Moneas cont = contMonedas.GetComponent<Contador_Moneas>();
         if (!jscript.tieneCerdo)
         {
-            if (cont.monedas < 4)
+            if (cont.monedas < 6)
             {
                 Debug.Log("Monedas insuficientes");
             }
             else
             {
                 Debug.Log("Comprado un cerdo por 4 monedas");
-                cont.monedas -= 4;
+                cont.monedas -= 6;
                 jscript.ObtenerCerdo();
             }
         }
@@ -77,14 +77,14 @@ public class Tienda_Comprar : MonoBehaviour
         Contador_Moneas cont = contMonedas.GetComponent<Contador_Moneas>();
         if (!jscript.tieneOveja)
         {
-            if (cont.monedas < 4)
+            if (cont.monedas < 8)
             {
                 Debug.Log("Monedas insuficientes");
             }
             else
             {
                 Debug.Log("Comprado una oveja por 4 monedas");
-                cont.monedas -= 4;
+                cont.monedas -= 8;
                 jscript.ObtenerOveja();
             }
         }
@@ -96,14 +96,14 @@ public class Tienda_Comprar : MonoBehaviour
         Contador_Moneas cont = contMonedas.GetComponent<Contador_Moneas>();
         if (!jscript.tieneVaca)
         {
-            if (cont.monedas < 4)
+            if (cont.monedas < 8)
             {
                 Debug.Log("Monedas insuficientes");
             }
             else
             {
                 Debug.Log("Comprado una vaca por 4 monedas");
-                cont.monedas -= 4;
+                cont.monedas -= 8;
                 jscript.ObtenerVaca();
             }
         }

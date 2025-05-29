@@ -89,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e955006a329e9a4f90d69a4e3aecf1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4163110579982954257}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e955006a329e9a4f90d69a4e3aecf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3771259122126161372}
   m_SourcePrefab: {fileID: 100100000, guid: 5e955006a329e9a4f90d69a4e3aecf1b, type: 3}
 --- !u!1 &1084329674291786972 stripped
 GameObject:
@@ -165,3 +168,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3771259122126161372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084329674291786972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29144c1e1be2e9948a2d041024e9be6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterreno: 0
+  b: 0
+  X: 0
+  Z: 0
+  X1: 0
+  tiempoCarne: 7
+  carneTota: 0
+  prefabcarne: {fileID: 4369261835376452135, guid: efd91f0d5d3de774898d6c1b5c996b97, type: 3}
+  scriptActivo: 1

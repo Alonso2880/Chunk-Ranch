@@ -9,8 +9,8 @@ public class HuertoUI : MonoBehaviour
     public Canvas canvas;
     public GameObject HuertoPrerfab, buzon;
     public Transform HuecoHuerto, HuecoHuerto2, HuecoHuerto3, HuecoHuerto4;
-    private GameObject HuertoG, jugador;
-    private bool compHu1 = false, compHu2 = false, compHu3 = false, compHu4 = false, mejHu1 = false, mejHu2 = false, mejHu3 = false, mejHu4 = false;
+    private GameObject HuertoG, jugador, HuertoG2, HuertoG3, HuertoG4;
+    public bool compHu1 = false, compHu2 = false, compHu3 = false, compHu4 = false, mejHu1 = false, mejHu2 = false, mejHu3 = false, mejHu4 = false;
     [HideInInspector] public GameObject contmonedas;
 
     public AudioClip Si, No;
@@ -143,10 +143,10 @@ public class HuertoUI : MonoBehaviour
             return;
         }
 
-        if(compHu1 && mejHu1 && cont.monedas >=150)
+        if(compHu1 && mejHu1 && cont.monedas >=150 && !compHu2)
         {
-            HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto2.position, HuecoHuerto2.rotation);
-            HuertoG.transform.SetParent(HuecoHuerto2);
+            HuertoG2 = Instantiate(HuertoPrerfab, HuecoHuerto2.position, HuecoHuerto2.rotation);
+            HuertoG2.transform.SetParent(HuecoHuerto2);
             compHu2 = true;
             cont.monedas -= 150;
             GetComponent<AudioSource>().PlayOneShot(Si);
@@ -159,10 +159,10 @@ public class HuertoUI : MonoBehaviour
             
         }
 
-        if(compHu2 && mejHu2 && cont.monedas >= 150)
+        if(compHu2 && mejHu2 && cont.monedas >= 150 && !compHu3)
         {
-            HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto3.position, HuecoHuerto3.rotation);
-            HuertoG.transform.SetParent(HuecoHuerto3);
+            HuertoG3 = Instantiate(HuertoPrerfab, HuecoHuerto3.position, HuecoHuerto3.rotation);
+            HuertoG3.transform.SetParent(HuecoHuerto3);
             cont.monedas -= 150;
             GetComponent<AudioSource>().PlayOneShot(Si);
             compHu3 = true;
@@ -175,10 +175,10 @@ public class HuertoUI : MonoBehaviour
             
         }
 
-        if(compHu3 && mejHu3 && cont.monedas >= 150)
+        if(compHu3 && mejHu3 && cont.monedas >= 150 && !compHu4)
         {
-            HuertoG = Instantiate(HuertoPrerfab, HuecoHuerto4.position, HuecoHuerto4.rotation);
-            HuertoG.transform.SetParent(HuecoHuerto4);
+            HuertoG4 = Instantiate(HuertoPrerfab, HuecoHuerto4.position, HuecoHuerto4.rotation);
+            HuertoG4.transform.SetParent(HuecoHuerto4);
             cont.monedas -= 150;
             GetComponent<AudioSource>().PlayOneShot(Si);
             compHu4 = true;
@@ -194,10 +194,11 @@ public class HuertoUI : MonoBehaviour
 
     private void mejorar()
     {
-        if (compHu1)
+        if (compHu1 && !compHu2 && !compHu3 && !compHu4)
         {
             var inventory = guardar_Inventario.Instance;
             InventoryItemData RocaItem = inventory.inventario.Find(item => item.nombre == "Roca");
+            
             if (RocaItem != null && RocaItem.count >= 10)
             {
                 mejHu1 = true;
@@ -213,7 +214,7 @@ public class HuertoUI : MonoBehaviour
             
         }
 
-        if (compHu2)
+        if (compHu1 && compHu2 && !compHu3 && !compHu4)
         {
             var inventory = guardar_Inventario.Instance;
             InventoryItemData RocaItem = inventory.inventario.Find(item => item.nombre == "Roca");
@@ -236,7 +237,7 @@ public class HuertoUI : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(No);
         }
 
-        if (compHu3)
+        if (compHu1 && compHu2 && compHu3 && !compHu4)
         {
             var inventory = guardar_Inventario.Instance;
             InventoryItemData RocaItem = inventory.inventario.Find(item => item.nombre == "Roca");
@@ -259,7 +260,7 @@ public class HuertoUI : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(No);
         }
 
-        if (compHu4)
+        if (compHu1 && compHu2 && compHu3 && compHu4)
         {
             var inventory = guardar_Inventario.Instance;
             InventoryItemData RocaItem = inventory.inventario.Find(item => item.nombre == "Roca");

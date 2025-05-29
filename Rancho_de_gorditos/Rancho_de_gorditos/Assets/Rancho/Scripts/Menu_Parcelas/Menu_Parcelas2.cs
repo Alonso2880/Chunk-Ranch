@@ -19,6 +19,8 @@ public class Menu_Parcelas2 : MonoBehaviour
     [HideInInspector] public GameObject contmonedas;
     private bool galli = false;
 
+    public bool GaCom = false, CeCOm = false, VacCom = false, OveCom = false, AmR = false;
+
     public AudioClip Si, No;
     public bool Mej = false, ampl = false;
     void Start()
@@ -73,6 +75,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         galli = true;
                         CerrarMenu();
                         comprado = true;
+                        GaCom = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
                         return;
@@ -91,6 +94,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Vacas";
                         CerrarMenu();
                         comprado = true;
+                        VacCom = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
                         return;
@@ -109,6 +113,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Cerdos";
                         CerrarMenu();
                         comprado = true;
+                        CeCOm = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
                         return;
@@ -126,6 +131,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Ovejas";
                         CerrarMenu();
                         comprado = true;
+                        OveCom = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
                         return;
@@ -166,7 +172,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                     }
                     else
                     {
-                        if (terreno.tag == "T_Gallinas")
+                        if (terreno.tag == "T_Gallinas" && GaCom)
                         {
                             Gallina.multHuevo = 2;
                             g.tiempoHuevo = 3;
@@ -175,30 +181,33 @@ public class Menu_Parcelas2 : MonoBehaviour
                             cont.monedas -= 30;
                         }
 
-                        if (terreno.tag == "T_Cerdos")
+                        if (terreno.tag == "T_Cerdos" && CeCOm)
                         {
                             Cerdo.multcarne = 2;
                             c.tiempoCarne = 4;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
+                            AmR = true;
                             cont.monedas -= 30;
                         }
 
-                        if (terreno.tag == "T_Vacas")
+                        if (terreno.tag == "T_Vacas" && VacCom)
                         {
                             Vaca.multLeche = 2;
                             v.tiempoLeche = 6;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
+                            AmR = true;
                             cont.monedas -= 30;
                         }
 
-                        if (terreno.tag == "T_Ovejas")
+                        if (terreno.tag == "T_Ovejas" && OveCom)
                         {
                             Oveja.multLana = 2;
                             o.tiempoLana = 8;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
+                            AmR = true;
                             cont.monedas -= 30;
                         }
 
@@ -208,30 +217,28 @@ public class Menu_Parcelas2 : MonoBehaviour
                     CerrarMenu();
                     break;
                 case 2:
-                    if (MaderaItem != null && MaderaItem.count >= 15 && galli)
+                    if (MaderaItem != null && MaderaItem.count >= 15 && galli && !AmR)
                     {
                         a.AmpliarParcela();
                         GetComponent<AudioSource>().PlayOneShot(Si);
                         ampl = true;
                         MaderaItem.count -= 15;
                     }
-                    else
+                    
+                    if (MaderaItem != null && MaderaItem.count >= 15 && AmR)
                     {
-                        if (MaderaItem != null && MaderaItem.count >= 15)
-                        {
                             a.AmpliarParcelaResto();
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             ampl = true;
                             MaderaItem.count -= 15;
-                        }
-                        else
-                        {
+                    }
+                    else
+                    {
                             Debug.Log("Te faltan monedas");
                             GetComponent<AudioSource>().PlayOneShot(No);
 
-                        }
-
                     }
+                    
 
                     CerrarMenu();
                     break;
