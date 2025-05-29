@@ -146,7 +146,7 @@ public class Menu_Parcelas3 : MonoBehaviour
 
     public void Mejoras(int n)
     {
-        Añadir_Mejorar_Parcela a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela>();
+        Añadir_Mejorar_Parcela3 a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela3>();
         Gallina g = gallina.GetComponent<Gallina>();
         Cerdo c = cerdo.GetComponent<Cerdo>();
         Vaca v = vaca.GetComponent<Vaca>();

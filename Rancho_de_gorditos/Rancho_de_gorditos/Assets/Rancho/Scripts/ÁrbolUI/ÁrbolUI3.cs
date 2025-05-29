@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class ÁrbolUI3 : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class ÁrbolUI3 : MonoBehaviour
         Cosechar.onClick.AddListener(() => CosechaR());
         player = GameObject.Find("Player");
         contmonedas = GameObject.Find("Canvas");
+
+        Manzano.gameObject.SetActive(false);
+        Naranjo.gameObject.SetActive(false);
+        Mejorar.gameObject.SetActive(false);
+        Cosechar.gameObject.SetActive(false);
+        Comprar.gameObject.SetActive(true);
     }
 
     private void FixedUpdate()

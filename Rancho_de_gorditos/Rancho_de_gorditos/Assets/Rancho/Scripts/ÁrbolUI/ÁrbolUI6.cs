@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+using System.Linq;
 public class ÁrbolUI6 : MonoBehaviour
 {
     public Button Comprar, Manzano, Naranjo, Mejorar, Salir, Cosechar;
@@ -23,6 +25,12 @@ public class ÁrbolUI6 : MonoBehaviour
         Cosechar.onClick.AddListener(() => CosechaR());
         player = GameObject.Find("Player");
         contmonedas = GameObject.Find("Canvas");
+
+        Manzano.gameObject.SetActive(false);
+        Naranjo.gameObject.SetActive(false);
+        Mejorar.gameObject.SetActive(false);
+        Cosechar.gameObject.SetActive(false);
+        Comprar.gameObject.SetActive(true);
     }
 
     private void FixedUpdate()

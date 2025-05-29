@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Menu_Parcelas2 : MonoBehaviour
 {
-    private GameObject baseParcelas, gallina, cerdo, vaca, oveja;
+    private GameObject gallina, cerdo, vaca, oveja;
     public GameObject terreno, buzon;
     private Canvas canvasP;
     public Button Comprar_Gallinas;
@@ -19,6 +19,7 @@ public class Menu_Parcelas2 : MonoBehaviour
     [HideInInspector] public GameObject contmonedas;
     private bool galli = false;
 
+    public GameObject baseParcelas;
     public bool GaCom = false, CeCOm = false, VacCom = false, OveCom = false, AmR = false;
 
     public AudioClip Si, No;
@@ -94,6 +95,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Vacas";
                         CerrarMenu();
                         comprado = true;
+                        AmR = true;
                         VacCom = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
@@ -113,6 +115,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Cerdos";
                         CerrarMenu();
                         comprado = true;
+                        AmR = true;
                         CeCOm = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
@@ -131,6 +134,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                         terreno.tag = "T_Ovejas";
                         CerrarMenu();
                         comprado = true;
+                        AmR = true;
                         OveCom = true;
                         cont.monedas -= 50;
                         GetComponent<AudioSource>().PlayOneShot(Si);
@@ -152,7 +156,7 @@ public class Menu_Parcelas2 : MonoBehaviour
 
     public void Mejoras(int n)
     {
-        Añadir_Mejorar_Parcela a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela>();
+        Añadir_Mejorar_Parcela2 a = baseParcelas.GetComponent<Añadir_Mejorar_Parcela2>();
         Gallina g = gallina.GetComponent<Gallina>();
         Cerdo c = cerdo.GetComponent<Cerdo>();
         Vaca v = vaca.GetComponent<Vaca>();
@@ -187,7 +191,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                             c.tiempoCarne = 4;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
-                            AmR = true;
+                            
                             cont.monedas -= 30;
                         }
 
@@ -197,7 +201,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                             v.tiempoLeche = 6;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
-                            AmR = true;
+                          
                             cont.monedas -= 30;
                         }
 
@@ -207,7 +211,7 @@ public class Menu_Parcelas2 : MonoBehaviour
                             o.tiempoLana = 8;
                             GetComponent<AudioSource>().PlayOneShot(Si);
                             Mej = true;
-                            AmR = true;
+                          
                             cont.monedas -= 30;
                         }
 
